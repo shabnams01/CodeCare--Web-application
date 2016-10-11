@@ -1,0 +1,69 @@
+<div class="homePg-header">
+  <div class="homePg-header_width1">
+    <img src="images/logo.png" alt="logo"/>
+  </div>
+  <div class="homePg-header_width2">
+    <p></p>
+  </div>
+  <div class="homePg-header_width3">
+      <p>Hello {{user.name}}</p>
+      <a href="" ng-click="logout()">Logout</a>
+  </div>
+</div>
+<div class="mainContent">
+  <div class="welcomeContent">
+    <p>{{txt}}</p>
+  </div>
+  <div class="content">
+    <article class="topContent">
+      <header>
+        <h2>Send Messages</h2>
+      </header>
+      <content>
+        <form>
+          <p class="HomePg-p">{{status}}</p>
+          <div class="form-input-select">
+            <select ng-model="eMsg.toContactNo" required>
+              <option value="">--SELECT--</option>
+              <option value="ALL">ALL</option>
+              <option value="+17789294947">Shabnam</option>
+              <option value="+16048803601">John</option>
+              <option value="+14034723693">Spencer</option>
+              <option value="+17788718989">Lara</option>
+            </select>
+          </div>
+          <div class="form-input-textarea">
+            <textarea placeholder="Type Message here" rows="4" cols="50" ng-model="eMsg.msgtxt" required></textarea>
+          </div>
+          <button class="homePg-btn" type="submit" ng-click="sendMessage(eMsg)" ng-disabled="form1.$invalid">Send</button>
+        </form>
+          <p>{{eMsg}}</p>
+      </content>
+    </article>
+  </div>
+<div class="content">
+    <article class="topContent">
+      <header>
+        <h2>Receive Messages</h2>
+      </header>
+      <content>
+        <form>
+          <p class="HomePg-p">{{status}}</p>
+          <div class="form-input-select">
+            <input type="text" value="{{date | date:'yyyy-MM-dd'}}" />
+          </div>
+          <div class="form-input-textarea">
+            <textarea disabled placeholder="Click Refresh Button" rows="4" cols="50" ng-model="messageList" required></textarea>
+          </div>
+          <button class="homePg-btn" type="submit" ng-click="getMessage()" ng-disabled="form1.$invalid">Refresh</button>
+        </form>
+      </content>
+    </article>
+  </div>
+</div>
+
+
+
+<footer class="mainFooter">
+  <p>Copyright Code-Care &copy;, 2016</p>
+</footer>

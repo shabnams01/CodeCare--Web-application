@@ -1,0 +1,14 @@
+<div class="loginPg-container">
+  <img src="images/logo.png" alt="logo"/>
+  <h2>CODE-CARE</h2>
+  <form name="form1">
+    <p class="loginPg-p">{{msgtxt}}</p>
+    <div class="form-input">
+      <input type="text" placeholder="Username" required ng-model="user.name"><br/>
+    </div>
+    <div class="form-input">
+      <input type="password" placeholder="Password" required ng-model="user.pass"><br/>
+    </div>
+    <button class="loginPg-btn" type="submit" ng-click="login(user)" ng-disabled="form1.$invalid">Submit</button>
+  </form>
+</div>

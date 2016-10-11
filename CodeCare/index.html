@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="CodeCareApp">
+<head>
+  <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1"/>
+  <title>CodeCare Demo Application</title>
+
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/font-awesome.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+  <script src="js/codecare.js"></script>
+  <script src="js/directives/loginDirective.js"></script>
+
+  <script src="js/controllers/loginController.js"></script>
+  <script src="js/controllers/homeController.js"></script>
+
+  <script src="js/services/loginService.js"></script>
+  <script src="js/services/homeService.js"></script>
+  <script src="js/services/sessionService.js"></script>
+
+
+</head>
+<body>
+  <div ng-view></div>
+</body>
+</html>
