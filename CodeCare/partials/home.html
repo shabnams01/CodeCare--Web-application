@@ -21,23 +21,38 @@
       </header>
       <content>
         <form>
-          <p class="HomePg-p">{{status}}</p>
           <div class="form-input-select">
+          <p>Code:
+            <select ng-model="eMsg.code" required>
+              <option value="">--SELECT--</option>
+              <option value="RED">RED</option>
+              <option value="BLACK">BLACK</option>
+              <option value="PURPLE">PURPLE</option>
+              <option value="WHITE">WHITE</option>
+              <option value="BROWN">BROWN</option>
+              <option value="GREY">GREY</option>
+              <option value="ORANGE">ORANGE</option>
+              <option value="BLUE">BLUE</option>
+              <option value="GREEN">GREEN</option>
+              <option value="YELLOW">YELLOW</option>
+            </select>
+          </p>
+          <p>To:
             <select ng-model="eMsg.toContactNo" required>
               <option value="">--SELECT--</option>
               <option value="ALL">ALL</option>
               <option value="+17789294947">Shabnam</option>
-              <option value="+16048803601">John</option>
-              <option value="+14034723693">Spencer</option>
-              <option value="+17788718989">Lara</option>
+              <option value="+17786013082">Berenice</option>
             </select>
+          </p>
           </div>
           <div class="form-input-textarea">
             <textarea placeholder="Type Message here" rows="4" cols="50" ng-model="eMsg.msgtxt" required></textarea>
           </div>
           <button class="homePg-btn" type="submit" ng-click="sendMessage(eMsg)" ng-disabled="form1.$invalid">Send</button>
+          <p class="HomePg-p">{{status}}</p>
         </form>
-          <p>{{eMsg}}</p>
+          <!--<p>{{eMsg}}</p>-->
       </content>
     </article>
   </div>
@@ -48,21 +63,28 @@
       </header>
       <content>
         <form>
-          <p class="HomePg-p">{{status}}</p>
           <div class="form-input-select">
-            <input type="text" value="{{date | date:'yyyy-MM-dd'}}" />
+            <p>Date:
+              <input type="date" value="{{ today | date: 'yyyy-MM-dd' }}" ng-model="today"/>
+            </p>
+            <p>From:
+            <select ng-model="eMsg.fromContactNo" required>
+              <option value="">--SELECT--</option>
+              <option value="ALL">ALL</option>
+              <option value="+17789294947">Shabnam</option>
+              <option value="+17786013082">Berenice</option>
+            </select>
+          </p>
           </div>
           <div class="form-input-textarea">
             <textarea disabled placeholder="Click Refresh Button" rows="4" cols="50" ng-model="messageList" required></textarea>
           </div>
-          <button class="homePg-btn" type="submit" ng-click="getMessage()" ng-disabled="form1.$invalid">Refresh</button>
+          <button class="homePg-btn" type="submit" ng-click="getMessage(eMsg)" ng-disabled="form1.$invalid">Refresh</button>
         </form>
       </content>
     </article>
   </div>
 </div>
-
-
 
 <footer class="mainFooter">
   <p>Copyright Code-Care &copy;, 2016</p>

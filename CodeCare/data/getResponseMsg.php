@@ -3,58 +3,42 @@
 /*  Author : Shabnam Suresh                                      */
 /*  Website: http://projects.thecdm.ca/codecare/responseMsg.php  */
 /* ------------------------------------------------------------- */
-//$date = json_decode(file_get_contents('php://input'));
+$eMsg = json_decode(file_get_contents('php://input'));
+$fromContact = $eMsg->fromContactNo;
 
-//$currDate = $_POST['currDate'];
-//$currDate = $date;
-//$fromContact = $_POST['fromContact'];
-$fromContact = 'ALL';
+require_once 'twilio-php-master/Twilio/autoload.php'; // Loads the library
+use Twilio\Rest\Client;
 
-// http://www.twilio.com/docs/libraries/
-//require_once ("inc/Services/Twilio.php");
-require_once 'twilio-php-master/Twilio/autoload.php';
-use twilio-php-master\Twilio\Rest\Client;
+// Your Account Sid and Auth Token from twilio.com/user/account
+$sid = "AC0152da9ba94a9e02596223f3dc7c5131";
+$token = "54ebf818e93201710e68fa1a8101c5ba";
+$client = new Client($sid, $token);
 
-// set our AccountSid and AuthToken - from www.twilio.com/user/account
-$AccountSid = "AC9f07cc196e1aa62ce0da9e6c8851e222";
-$AuthToken = "565d38e6c6f603492f359b17175502ce";
-
-//$client = new Services_Twilio($AccountSid, $AuthToken);
-$client = new Client($AccountSid, $AuthToken);
-
-$aryResponse = array();
-$row = 0;
-
-if(strpos($fromContact, 'ALL') !== false)
+if(strcmp($fromContact, 'ALL') == 0)
 {
-	foreach ($client->account->sms_messages->getIterator(0, 50, array(
-		//'DateSent' => $currDate,
-		//'From' => '+17075551234', // **Optional** filter by 'From'...
-		'To' => '+17782007176', // ...or by 'To'
-	)) as $sms)
-	{
-		echo "Date:".$sms->date_sent." From:".$sms->from." Msg:".$sms->body."<br>";
-		$aryResponse[$row]["Date"] = $sms->date_sent;
-		$aryResponse[$row]["From"] = $sms->from;
-		$aryResponse[$row]["Msg"] = $sms->body;
-		$row += 1;
-	}
+	foreach ($client->messages->read() as $message) {
 
+			if(strcmp($message->to, '+17782007116') == 0)
+			{
+		    echo "-------------------------------------"."\n";
+		    echo "From:".$message->from."\n";
+		    echo "Message:".$message->body."\n";
+		    echo "-------------------------------------"."\n";
+	  	}
+
+	}
 }
 else
 {
-	foreach ($client->account->sms_messages->getIterator(0, 50, array(
-		'DateSent' => $currDate,
-		'From' => $fromContact,
-		'To' => '+17782007176', // ...or by 'To'
-	)) as $sms)
-	{
-		echo "Date:".$sms->date_sent." From:".$sms->from." Msg:".$sms->body."<br>";
-		$aryResponse[$row]["Date"] = $sms->date_sent;
-		$aryResponse[$row]["From"] = $sms->from;
-		$aryResponse[$row]["Msg"] = $sms->body;
-		$row += 1;
-	}
+	foreach ($client->messages->read() as $message) {
 
+			if((strcmp($message->to, '+17782007116') == 0 ) && (strcmp($message->from, $fromContact) == 0 )){
+	    echo "-------------------------------------"."\n";
+	    echo "From:".$message->from."\n";
+	    echo "Message:".$message->body."\n";
+	    echo "-------------------------------------"."\n";
+	  }
+
+	}
 }
 ?>

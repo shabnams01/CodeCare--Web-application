@@ -5,7 +5,7 @@ app.factory('HomeService', function($http,$location){
 
       if(eMsg){
 
-        var $httpPost = $http.post('data/sendEmergencyMsgAll.php',eMsg);
+        var $httpPost = $http.post('data/sendEmergencyMsg.php',eMsg);
 
         $httpPost.then(function(msg)
         {
@@ -19,9 +19,9 @@ app.factory('HomeService', function($http,$location){
       }
       $location.path('/home');
     },
-    getMessage : function(scope){
+    getMessage : function(eMsg,scope){
       console.log('enter getMessage function service');
-      var $httpPost = $http.post('data/getResponseMsg.php');
+      var $httpPost = $http.post('data/getResponseMsg.php',eMsg);
 
       $httpPost.then(function(msg)
       {

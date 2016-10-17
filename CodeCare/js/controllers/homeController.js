@@ -2,7 +2,7 @@ app.controller(
   'HomeController',
   ['$scope','LoginService', 'HomeService',function($scope, LoginService, HomeService)
   {
-    $scope.date = new Date();
+    $scope.today = new Date();
 
     $scope.txt='Welcome to CODE-CARE';
     $scope.logout=function(){
@@ -15,9 +15,9 @@ app.controller(
       HomeService.sendMessage(eMsg,$scope);
     };
 
-    $scope.getMessage=function(){
+    $scope.getMessage=function(eMsg){
       console.log('insde home controller get Message');
-      HomeService.getMessage($scope);
+      HomeService.getMessage(eMsg,$scope);
     };
   }
 ]);
